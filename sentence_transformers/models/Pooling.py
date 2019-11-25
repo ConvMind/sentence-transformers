@@ -12,24 +12,33 @@ class Pooling(nn.Module):
     Using pooling, it generates from a variable sized sentence a fixed sized sentence embedding. This layer also allows to use the CLS token if it is returned by the underlying word embedding model.
     You can concatenate multiple poolings together.
     """
+
     def __init__(self,
                  word_embedding_dimension: int,
                  pooling_mode_cls_token: bool = False,
                  pooling_mode_max_tokens: bool = False,
                  pooling_mode_mean_tokens: bool = True,
                  pooling_mode_mean_sqrt_len_tokens: bool = False,
+                 pooling_mode_first_k_token: bool = False,
+                 first_k: int = 4
                  ):
         super(Pooling, self).__init__()
 
-        self.config_keys = ['word_embedding_dimension',  'pooling_mode_cls_token', 'pooling_mode_mean_tokens', 'pooling_mode_max_tokens', 'pooling_mode_mean_sqrt_len_tokens']
+        self.config_keys = ['word_embedding_dimension', 'pooling_mode_cls_token', 'pooling_mode_mean_tokens',
+                            'pooling_mode_max_tokens', 'pooling_mode_mean_sqrt_len_tokens', 'pooling_mode_first_k_token',
+                            'first_k']
+        self.default_vals = [None, False, True, False, False, False, 4]
 
         self.word_embedding_dimension = word_embedding_dimension
         self.pooling_mode_cls_token = pooling_mode_cls_token
         self.pooling_mode_mean_tokens = pooling_mode_mean_tokens
         self.pooling_mode_max_tokens = pooling_mode_max_tokens
         self.pooling_mode_mean_sqrt_len_tokens = pooling_mode_mean_sqrt_len_tokens
+        self.pooling_mode_first_k_token = pooling_mode_first_k_token
+        self.first_k = first_k
 
-        pooling_mode_multiplier = sum([pooling_mode_cls_token, pooling_mode_max_tokens, pooling_mode_mean_tokens, pooling_mode_mean_sqrt_len_tokens])
+        pooling_mode_multiplier = sum([pooling_mode_cls_token, pooling_mode_max_tokens, pooling_mode_mean_tokens,
+                                       pooling_mode_mean_sqrt_len_tokens])
         self.pooling_output_dimension = (pooling_mode_multiplier * word_embedding_dimension)
 
     def forward(self, features: Dict[str, Tensor]):
@@ -41,16 +50,18 @@ class Pooling(nn.Module):
         output_vectors = []
         if self.pooling_mode_cls_token:
             output_vectors.append(cls_token)
+
         if self.pooling_mode_max_tokens:
             input_mask_expanded = input_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
             token_embeddings[input_mask_expanded == 0] = -1e9  # Set padding tokens to large negative value
             max_over_time = torch.max(token_embeddings, 1)[0]
             output_vectors.append(max_over_time)
+
         if self.pooling_mode_mean_tokens or self.pooling_mode_mean_sqrt_len_tokens:
             input_mask_expanded = input_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
             sum_embeddings = torch.sum(token_embeddings * input_mask_expanded, 1)
 
-            #If tokens are weighted (by WordWeights layer), feature 'token_weights_sum' will be present
+            # If tokens are weighted (by WordWeights layer), feature 'token_weights_sum' will be present
             if 'token_weights_sum' in features:
                 sum_mask = features['token_weights_sum'].unsqueeze(-1).expand(sum_embeddings.size())
             else:
@@ -63,7 +74,16 @@ class Pooling(nn.Module):
             if self.pooling_mode_mean_sqrt_len_tokens:
                 output_vectors.append(sum_embeddings / torch.sqrt(sum_mask))
 
-        output_vector = torch.cat(output_vectors, 1)
+        if self.pooling_mode_first_k_token:
+            first_k = min(self.first_k, token_embeddings.shape[1])
+            for i in range(first_k):
+                output_vectors.append(token_embeddings[:, i])
+
+            output_vectors = [o.unsqueeze(1) for o in output_vectors]
+            output_vector = torch.cat(output_vectors, 1)
+        else:
+            output_vector = torch.cat(output_vectors, 1)
+
         features.update({'sentence_embedding': output_vector})
         return features
 

@@ -218,8 +218,6 @@ class SentenceTransformer(nn.Sequential):
 
         return {'features': features, 'labels': torch.stack(labels)}
 
-
-
     def fit(self,
             train_objectives: Iterable[Tuple[DataLoader, nn.Module]],
             evaluator: SentenceEvaluator,
@@ -386,7 +384,6 @@ class SentenceTransformer(nn.Sequential):
             if score > self.best_score and save_best_model:
                 self.save(output_path)
                 self.best_score = score
-
 
     def _get_scheduler(self, optimizer, scheduler: str, warmup_steps: int, t_total: int):
         """

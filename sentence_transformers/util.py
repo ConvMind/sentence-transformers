@@ -23,7 +23,6 @@ def batch_to_device(batch, target_device: device):
     return features, labels
 
 
-
 def http_get(url, path):
     file_binary = open(path, "wb")
     req = requests.get(url, stream=True)
@@ -54,6 +53,7 @@ def fullname(o):
     return o.__class__.__name__  # Avoid reporting __builtin__
   else:
     return module + '.' + o.__class__.__name__
+
 
 def import_from_string(dotted_path):
     """
