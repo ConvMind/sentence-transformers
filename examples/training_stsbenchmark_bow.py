@@ -7,11 +7,11 @@ To make the model trainable, we add multiple dense layers to create a Deep Avera
 import torch
 from torch.utils.data import DataLoader
 import math
-from sentence_transformers import models, losses
-from sentence_transformers import SentencesDataset, LoggingHandler, SentenceTransformer
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
-from sentence_transformers.readers import *
-from sentence_transformers.models.tokenizer.WordTokenizer import ENGLISH_STOP_WORDS
+from soco_sentence_transformers import models, losses
+from soco_sentence_transformers import SentencesDataset, LoggingHandler, SentenceTransformer
+from soco_sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
+from soco_sentence_transformers.readers import *
+from soco_sentence_transformers.models.tokenizer.WordTokenizer import ENGLISH_STOP_WORDS
 import logging
 from datetime import datetime
 

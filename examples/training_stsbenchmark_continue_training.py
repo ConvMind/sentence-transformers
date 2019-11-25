@@ -4,9 +4,9 @@ It then fine-tunes this model for some epochs on the STS benchmark dataset.
 """
 from torch.utils.data import DataLoader
 import math
-from sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, losses
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
-from sentence_transformers.readers import STSDataReader
+from soco_sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, losses
+from soco_sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
+from soco_sentence_transformers.readers import STSDataReader
 import logging
 from datetime import datetime
 

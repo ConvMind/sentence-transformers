@@ -6,7 +6,7 @@ we want to find the most similar sentence in this corpus.
 
 This script outputs for various queries the top 5 most similar sentences in the corpus.
 """
-from sentence_transformers import SentenceTransformer
+from soco_sentence_transformers import SentenceTransformer
 import scipy.spatial
 
 embedder = SentenceTransformer('bert-base-nli-mean-tokens')

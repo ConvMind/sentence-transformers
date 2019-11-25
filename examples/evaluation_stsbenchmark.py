@@ -2,9 +2,9 @@
 This examples loads a pre-trained model and evaluates it on the STSbenchmark dataset
 """
 from torch.utils.data import DataLoader
-from sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
-from sentence_transformers.readers import STSDataReader
+from soco_sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler
+from soco_sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
+from soco_sentence_transformers.readers import STSDataReader
 import numpy as np
 import logging
 

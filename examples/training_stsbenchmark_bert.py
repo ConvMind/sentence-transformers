@@ -4,9 +4,9 @@ that can be compared using cosine-similarity to measure the similarity.
 """
 from torch.utils.data import DataLoader
 import math
-from sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, losses, models
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
-from sentence_transformers.readers import STSDataReader
+from soco_sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, losses, models
+from soco_sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
+from soco_sentence_transformers.readers import STSDataReader
 import logging
 from datetime import datetime
 
@@ -30,7 +30,7 @@ word_embedding_model = models.BERT('bert-base-uncased')
 # Apply mean pooling to get one fixed sized sentence vector
 pooling_model = models.Pooling(word_embedding_model.get_word_embedding_dimension(),
                                pooling_mode_mean_tokens=False,
-                               pooling_mode_first_k_token=True)
+                               pooling_mode_first_k_token=False)
 
 model = SentenceTransformer(modules=[word_embedding_model, pooling_model])
 

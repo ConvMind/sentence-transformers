@@ -8,10 +8,10 @@ See docs/pretrained-models/wikipedia-sections-modesl.md for further details.
 You can get the dataset by running examples/datasets/get_data.py
 """
 
-from sentence_transformers import SentenceTransformer, SentencesDataset, LoggingHandler, losses, models
+from soco_sentence_transformers import SentenceTransformer, SentencesDataset, LoggingHandler, losses, models
 from torch.utils.data import DataLoader
-from sentence_transformers.readers import TripletReader
-from sentence_transformers.evaluation import TripletEvaluator
+from soco_sentence_transformers.readers import TripletReader
+from soco_sentence_transformers.evaluation import TripletEvaluator
 from datetime import datetime
 
 import csv

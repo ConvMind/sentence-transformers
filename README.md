@@ -254,23 +254,23 @@ This framework implements various modules, that can be used sequentially to map 
 
 
 **Word Embeddings:** These models map tokens to token embeddings.
-- **[BERT](sentence_transformers/models/BERT.py)**: Uses pytorch-transformers BERT model to map tokens to vectors. Example:  [examples/training_nli_bert.py](examples/training_nli_bert.py) / [examples/training_stsbenchmark_bert.py](examples/training_stsbenchmark_bert.py)
-- **[RoBERTa](sentence_transformers/models/RoBERTa.py)**: Uses pytorch-transformers RoBERTa model to map tokens to vectors. Example:  [examples/training_nli_roberta.py](examples/training_nli_roberta.py) / [examples/training_stsbenchmark_roberta.py](examples/training_stsbenchmark_roberta.py)
-- **[XLNet](sentence_transformers/models/XLNet.py)**: Uses pytorch-transformers XLNet model to map tokens to vectors. Example: [examples/training_stsbenchmark_xlnet.py](examples/training_stsbenchmark_xlnet.py)
-- **[WordEmbeddings](sentence_transformers/models/WordEmbeddings.py)**: Uses traditional word embeddings like word2vec or GloVe to map tokens to vectors. Example: [examples/training_stsbenchmark_avg_word_embeddings.py](examples/training_stsbenchmark_avg_word_embeddings.py)
+- **[BERT](soco_sentence_transformers/models/BERT.py)**: Uses pytorch-transformers BERT model to map tokens to vectors. Example:  [examples/training_nli_bert.py](examples/training_nli_bert.py) / [examples/training_stsbenchmark_bert.py](examples/training_stsbenchmark_bert.py)
+- **[RoBERTa](soco_sentence_transformers/models/RoBERTa.py)**: Uses pytorch-transformers RoBERTa model to map tokens to vectors. Example:  [examples/training_nli_roberta.py](examples/training_nli_roberta.py) / [examples/training_stsbenchmark_roberta.py](examples/training_stsbenchmark_roberta.py)
+- **[XLNet](soco_sentence_transformers/models/XLNet.py)**: Uses pytorch-transformers XLNet model to map tokens to vectors. Example: [examples/training_stsbenchmark_xlnet.py](examples/training_stsbenchmark_xlnet.py)
+- **[WordEmbeddings](soco_sentence_transformers/models/WordEmbeddings.py)**: Uses traditional word embeddings like word2vec or GloVe to map tokens to vectors. Example: [examples/training_stsbenchmark_avg_word_embeddings.py](examples/training_stsbenchmark_avg_word_embeddings.py)
 
 **Embedding Transformations:** These models transform token embeddings in some way
-- **[LSTM](sentence_transformers/models/LSTM.py)**: Runs a bidirectional LSTM. Example: [examples/training_stsbenchmark_bilstm.py](examples/training_stsbenchmark_bilstm.py).
-- **[CNN](sentence_transformers/models/CNN.py)**: Runs a CNN model with multiple kernel sizes. Example: [examples/training_stsbenchmark_cnn.py](examples/training_stsbenchmark_cnn.py).
-- **[WordWeights](sentence_transformers/models/WordWeights.py)**: This model can be used after WordEmbeddings and before Pooling to apply a weighting to the token embeddings, for example, a tf-idf weighting. Example: [examples/training_stsbenchmark_tf-idf_word_embeddings.py](examples/training_stsbenchmark_tf-idf_word_embeddings.py).
-- **[Pooling](sentence_transformers/models/Pooling.py)**: After tokens are mapped to embeddings, we apply the pooling, where you can compute a mean/max-pooling or use the CLS-token embedding (for BERT and XLNet). You can also combine multiple poolings.
+- **[LSTM](soco_sentence_transformers/models/LSTM.py)**: Runs a bidirectional LSTM. Example: [examples/training_stsbenchmark_bilstm.py](examples/training_stsbenchmark_bilstm.py).
+- **[CNN](soco_sentence_transformers/models/CNN.py)**: Runs a CNN model with multiple kernel sizes. Example: [examples/training_stsbenchmark_cnn.py](examples/training_stsbenchmark_cnn.py).
+- **[WordWeights](soco_sentence_transformers/models/WordWeights.py)**: This model can be used after WordEmbeddings and before Pooling to apply a weighting to the token embeddings, for example, a tf-idf weighting. Example: [examples/training_stsbenchmark_tf-idf_word_embeddings.py](examples/training_stsbenchmark_tf-idf_word_embeddings.py).
+- **[Pooling](soco_sentence_transformers/models/Pooling.py)**: After tokens are mapped to embeddings, we apply the pooling, where you can compute a mean/max-pooling or use the CLS-token embedding (for BERT and XLNet). You can also combine multiple poolings.
 
 **Sentence Embeddings Models:** These models map a sentence directly to a fixed size sentence embedding:
-- **[BoW](sentence_transformers/models/BoW.py)**: Computes a fixed size bag-of-words (BoW) representation of the input text. Can be initialized with IDF-values to create a tf-idf vector. Note that this model is not trainable. Example: [examples/training_stsbenchmark_bow.py](examples/training_stsbenchmark_bow.py)
+- **[BoW](soco_sentence_transformers/models/BoW.py)**: Computes a fixed size bag-of-words (BoW) representation of the input text. Can be initialized with IDF-values to create a tf-idf vector. Note that this model is not trainable. Example: [examples/training_stsbenchmark_bow.py](examples/training_stsbenchmark_bow.py)
 
 
 **Sentence Embeddings Transformations:** These models can be added once we have a fixed size sentence embedding.
-- **[Dense](sentence_transformers/models/Pooling.py)**: A fully-connected feed-forward network to create a Deep Averaging Network (DAN). You can stack multiple Dense models. Example: [examples/training_stsbenchmark_avg_word_embeddings.py](examples/training_stsbenchmark_avg_word_embeddings.py)
+- **[Dense](soco_sentence_transformers/models/Pooling.py)**: A fully-connected feed-forward network to create a Deep Averaging Network (DAN). You can stack multiple Dense models. Example: [examples/training_stsbenchmark_avg_word_embeddings.py](examples/training_stsbenchmark_avg_word_embeddings.py)
 
 
 

@@ -3,10 +3,10 @@ This is a simple application for sentence embeddings: clustering
 
 Sentences are mapped to sentence embeddings and then k-mean clustering is applied.
 """
-from sentence_transformers import SentenceTransformer
+from soco_sentence_transformers import SentenceTransformer
 from sklearn.cluster import AgglomerativeClustering
 
-embedder = SentenceTransformer('bert-base-nli-mean-tokens')
+embedder = SentenceTransformer('bert-large-nli-mean-tokens')
 
 # Corpus with example sentences
 corpus = ['A man is eating a food.',

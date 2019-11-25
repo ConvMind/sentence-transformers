@@ -4,9 +4,9 @@ that can be compared using cosine-similarity to measure the similarity.
 """
 from torch.utils.data import DataLoader
 import math
-from sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, losses, models
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
-from sentence_transformers.readers import STSDataReader
+from soco_sentence_transformers import SentenceTransformer,  SentencesDataset, LoggingHandler, losses, models
+from soco_sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
+from soco_sentence_transformers.readers import STSDataReader
 import logging
 from datetime import datetime
 

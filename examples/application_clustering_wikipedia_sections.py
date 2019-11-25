@@ -4,7 +4,7 @@ This examples clusters different sentences that come from the same wikipedia art
 It uses the 'wikipedia-sections' model, a model that was trained to differentiate if two sentences from the
 same article come from the same section or from different sections in that article.
 """
-from sentence_transformers import SentenceTransformer
+from soco_sentence_transformers import SentenceTransformer
 from sklearn.cluster import AgglomerativeClustering
 
 

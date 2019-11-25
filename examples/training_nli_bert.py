@@ -5,10 +5,10 @@ STS benchmark dataset
 """
 from torch.utils.data import DataLoader
 import math
-from sentence_transformers import models, losses
-from sentence_transformers import SentencesDataset, LoggingHandler, SentenceTransformer
-from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
-from sentence_transformers.readers import *
+from soco_sentence_transformers import models, losses
+from soco_sentence_transformers import SentencesDataset, LoggingHandler, SentenceTransformer
+from soco_sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
+from soco_sentence_transformers.readers import *
 import logging
 from datetime import datetime
 
