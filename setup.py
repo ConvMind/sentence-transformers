@@ -4,10 +4,9 @@ with open("README.md", mode="r", encoding="utf-8") as readme_file:
     readme = readme_file.read()
 
 setup(
-    name="sentence-transformers",
-    version="0.2.3",
-    author="Nils Reimers, Gregor Geigle",
-    author_email="Rnils@web.de",
+    name="soco-sentence-transformers",
+    version="0.0.1",
+    author="Tony Zhao",
     description="Sentence Embeddings using BERT / XLNet",
     long_description=readme,
     long_description_content_type="text/markdown",
